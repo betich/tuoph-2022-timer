@@ -72,6 +72,15 @@ const Timer: NextPage = () => {
     }
   }, [])
 
+  if (isNaN(timeEnd))
+    return (
+      <>
+        <div className="bg-black w-full min-h-screen flex flex-col justify-center items-center">
+          <p className="font-display text-white text-8xl 2xl:text-[18rem] font-semibold tracking-wider">Loading...</p>
+        </div>
+      </>
+    )
+
   return (
     <div
       className={classNames(
