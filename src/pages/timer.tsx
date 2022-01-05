@@ -1,4 +1,4 @@
-import { NextPage } from "next"
+import { GetServerSideProps, NextPage } from "next"
 import { useRouter } from "next/dist/client/router"
 import { useEffect, useState } from "react"
 import classNames from "classnames"
@@ -52,10 +52,7 @@ const getStatus: (timeLeft: number, duration: number) => Colors = (timeLeft, dur
   }
 }
 
-const Timer: NextPage = () => {
-  const router = useRouter()
-  const { time, duration: _duration } = router.query
-
+const Timer: NextPage<{ time: string | null; _duration: string | null }> = ({ time, _duration }) => {
   const timeEnd = +(time as string)
   const duration = +(_duration as string)
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(calculateTimeLeft(timeEnd))
@@ -80,33 +77,44 @@ const Timer: NextPage = () => {
         </div>
       </>
     )
-
-  return (
-    <div
-      className={classNames(
-        "w-full min-h-screen space-y-12 2xl:space-y-48 flex flex-col items-center justify-center font-display",
-        getBgColor(currentColor)
-      )}
-    >
-      <p
+  else
+    return (
+      <div
         className={classNames(
-          "font-mono text-8xl 2xl:text-[18rem] font-semibold tracking-wider",
-          currentColor === "finished" && "animate-bounce"
+          "w-full min-h-screen space-y-12 2xl:space-y-48 flex flex-col items-center justify-center font-display",
+          getBgColor(currentColor)
         )}
       >
-        {timeLeft
-          ? `${String(timeLeft.minutes).padStart(2, "0")}:${String(timeLeft.seconds).padStart(2, "0")}`
-          : "00:00"}
-      </p>
-      {currentColor === "finished" && (
-        <Link href="/">
-          <a className="text-lg 2xl:text-[6.5rem] px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-purple-300 text-black border 2xl:border-[0.35rem] transition-colors hover:bg-purple-400">
-            กลับเข้าหน้าแรก
-          </a>
-        </Link>
-      )}
-    </div>
-  )
+        <p
+          className={classNames(
+            "font-mono text-8xl 2xl:text-[18rem] font-semibold tracking-wider",
+            currentColor === "finished" && "animate-bounce"
+          )}
+        >
+          {timeLeft
+            ? `${String(timeLeft.minutes).padStart(2, "0")}:${String(timeLeft.seconds).padStart(2, "0")}`
+            : "00:00"}
+        </p>
+        {currentColor === "finished" && (
+          <Link href="/">
+            <a className="text-lg 2xl:text-[6.5rem] px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-purple-300 text-black border 2xl:border-[0.35rem] transition-colors hover:bg-purple-400">
+              กลับเข้าหน้าแรก
+            </a>
+          </Link>
+        )}
+      </div>
+    )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  console.log(query)
+
+  return {
+    props: {
+      time: query?.time ?? null,
+      _duration: query?.duration ?? null,
+    },
+  }
 }
 
 export default Timer
