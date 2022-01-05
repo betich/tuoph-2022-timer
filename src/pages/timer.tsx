@@ -89,11 +89,13 @@ const Timer: NextPage = () => {
           ? `${String(timeLeft.minutes).padStart(2, "0")}:${String(timeLeft.seconds).padStart(2, "0")}`
           : "00:00"}
       </p>
-      <Link href="/">
-        <a className="text-lg 2xl:text-[6.5rem] px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-purple-300 text-black border 2xl:border-[0.35rem] transition-colors hover:bg-purple-400">
-          กลับเข้าหน้าแรก
-        </a>
-      </Link>
+      {currentColor === "finished" && (
+        <Link href="/">
+          <a className="text-lg 2xl:text-[6.5rem] px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-purple-300 text-black border 2xl:border-[0.35rem] transition-colors hover:bg-purple-400">
+            กลับเข้าหน้าแรก
+          </a>
+        </Link>
+      )}
     </div>
   )
 }
