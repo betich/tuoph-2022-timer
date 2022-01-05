@@ -2,6 +2,7 @@ import { NextPage } from "next"
 import { useRouter } from "next/dist/client/router"
 import { useEffect, useState } from "react"
 import classNames from "classnames"
+import Link from "next/link"
 
 interface TimeLeft {
   days: number
@@ -74,7 +75,7 @@ const Timer: NextPage = () => {
   return (
     <div
       className={classNames(
-        "w-full min-h-screen flex flex-col items-center justify-center font-display",
+        "w-full min-h-screen space-y-12 2xl:space-y-48 flex flex-col items-center justify-center font-display",
         getBgColor(currentColor)
       )}
     >
@@ -88,6 +89,11 @@ const Timer: NextPage = () => {
           ? `${String(timeLeft.minutes).padStart(2, "0")}:${String(timeLeft.seconds).padStart(2, "0")}`
           : "00:00"}
       </p>
+      <Link href="/">
+        <a className="text-lg 2xl:text-[6.5rem] px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-purple-300 text-black border 2xl:border-[0.35rem] transition-colors hover:bg-purple-400">
+          กลับเข้าหน้าแรก
+        </a>
+      </Link>
     </div>
   )
 }

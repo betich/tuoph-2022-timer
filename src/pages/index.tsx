@@ -69,7 +69,7 @@ const Home: NextPage = () => {
             setMinute("")
             setSecond("")
           }}
-          className="px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-red-400 text-white border transition-colors hover:bg-red-600"
+          className="2xl:border-[0.35rem] px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-red-400 text-white border transition-colors hover:bg-red-600"
         >
           รีเซ็ต
         </button>
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
               },
             })
           }}
-          className="px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-purple-300 text-black border transition-colors hover:bg-purple-400"
+          className="2xl:border-[0.35rem] px-12 py-2 2xl:px-36 2xl:py-32 rounded-full border-gray-700 bg-purple-300 text-black border transition-colors hover:bg-purple-400"
         >
           จับเวลา
         </button>
