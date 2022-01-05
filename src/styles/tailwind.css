@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 @layer components {
-  /* @keyframes example {
+  @keyframes bg {
     from {
-      @apply bg-red-500
+      @apply bg-red-500;
     }
     to {
-      @apply bg-black
+      @apply bg-red-700;
     }
-  } */
+  }
+
+  .bg-blinking {
+    animation: bg 0.5s linear 0.25s infinite alternate;
+  }
 }

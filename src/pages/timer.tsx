@@ -34,7 +34,7 @@ const getBgColor = (color: Colors) => {
   else if (color === "half") return "bg-green-500 text-white"
   else if (color === "5min") return "bg-yellow-400 text-black"
   else if (color === "30sec") return "bg-yellow-600 text-white"
-  else if (color === "finished") return "bg-red-500 text-white"
+  else if (color === "finished") return "bg-blinking text-white"
 }
 
 const getStatus: (timeLeft: number, duration: number) => Colors = (timeLeft, duration) => {
