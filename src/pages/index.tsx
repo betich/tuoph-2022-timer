@@ -82,6 +82,11 @@ const Home: NextPage = () => {
               return
             }
 
+            if (isNaN(+minutes) || isNaN(+seconds)) {
+              setError("type in numbers only")
+              return
+            }
+
             const timed = +new Date() + +minutes * 1000 * 60 + +seconds * 1000
 
             router.push({
