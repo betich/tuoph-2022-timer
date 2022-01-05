@@ -4,10 +4,19 @@ import { sendJson } from "next/dist/server/api-utils"
 import { FC, useRef, useState } from "react"
 
 const Home: NextPage = () => {
+  let _saved: null | string = null
+  if (typeof window !== "undefined") {
+    _saved = window.localStorage.getItem("time")
+  }
+
+  const saved = _saved?.split(":") as string[]
+  const _minutes: string | null = saved?.length ? saved[0] : null
+  const _seconds: string | null = saved?.length ? saved[1] : null
+
   const minRef = useRef<HTMLInputElement | null>(null)
   const secRef = useRef<HTMLInputElement | null>(null)
-  const [minutes, setMinute] = useState("05")
-  const [seconds, setSecond] = useState("30")
+  const [minutes, setMinute] = useState(_minutes ?? "15")
+  const [seconds, setSecond] = useState(_seconds ?? "30")
   const [error, setError] = useState<null | string>(null)
   const router = useRouter()
 
@@ -21,7 +30,7 @@ const Home: NextPage = () => {
         <input
           type="text"
           className="text-gray-500 w-24 2xl:w-[20rem] 2xl:text-[10rem] 2xl:py-[10rem] py-8 border border-gray-600 shadow-md rounded-lg text-center text-6xl"
-          placeholder="05"
+          placeholder="15"
           ref={minRef}
           value={minutes}
           onChange={(e) => {
@@ -88,6 +97,9 @@ const Home: NextPage = () => {
             }
 
             const timed = +new Date() + +minutes * 1000 * 60 + +seconds * 1000
+            if (typeof window !== "undefined") {
+              window.localStorage.setItem("time", `${minutes}:${seconds}`)
+            }
 
             router.push({
               pathname: "/timer",
