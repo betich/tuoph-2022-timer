@@ -64,7 +64,7 @@ const Timer: NextPage<{ time: string | null; _duration: string | null }> = ({ ti
     }, 1000)
 
     return function cleanup() {
-      console.log("cleaning up")
+      console.log("cleaning up yee")
       clearInterval(timer)
     }
   }, [])
