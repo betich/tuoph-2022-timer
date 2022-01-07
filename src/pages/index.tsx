@@ -96,7 +96,7 @@ const Home: NextPage = () => {
               return
             }
 
-            const timed = +new Date() + +minutes * 1000 * 60 + +seconds * 1000
+            const timed = +new Date() + +minutes * 1000 * 60 + +seconds * 1000 + 1 * 1000
             if (typeof window !== "undefined") {
               window.localStorage.setItem("time", `${minutes}:${seconds}`)
             }
