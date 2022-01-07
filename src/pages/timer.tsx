@@ -87,7 +87,7 @@ const Timer: NextPage<{ time: string | null; _duration: string | null }> = ({ ti
       >
         <p
           className={classNames(
-            "font-mono text-8xl 2xl:text-[18rem] font-semibold tracking-wider",
+            "font-mono text-[20rem] 2xl:text-[18rem] font-semibold tracking-wider",
             currentColor === "finished" && "animate-bounce"
           )}
         >
